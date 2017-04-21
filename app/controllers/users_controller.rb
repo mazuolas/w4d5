@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :logged_in?, only: [:index, :show]
+
   def index
     @users = User.all
     render :index
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      login!(@user)
       redirect_to user_url(@user)
     else
       flash[:errors] = "Invalid user"
@@ -27,6 +30,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+
+  def logged_in?
+    redirect_to new_sessions_url unless current_user
+  end
 
   def user_params
     params.require(:user).permit(:username, :password)

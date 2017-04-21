@@ -1,5 +1,7 @@
+<h1>Sign up</h1>
 <form class="" action="<%= users_url %>" method="post">
-  <input type="text" name="user[username]" placeholder="Enter Username">
-  <input type="password" name="user[password]" placeholder="Enter Password">
-  <input type="submit">
+  <%= auth_token %>
+  <input id="username" type="text" name="user[username]" placeholder="Enter Username">
+  <input id="password" type="password" name="user[password]" placeholder="Enter Password">
+  <input type="submit" value = "Submit">
 </form>

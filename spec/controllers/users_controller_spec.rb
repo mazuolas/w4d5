@@ -21,7 +21,7 @@ RSpec.describe UsersController, type: :controller do
   describe "POST #create" do
     context "with invalid params" do
       it "validates presence of username and password" do
-        post :create, user: { username: "mark" }
+        post :create, params: { user: { username: "mark" } }
         expect(response).to render_template(:new)
         expect(flash[:errors]).to be_present
       end
@@ -29,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
 
   context "with valid params" do
     it "redirects to user show page" do
-      post :create, user: { username: "mark", password: "password" }
+      post :create, params: { user: { username: "mark", password: "password" } }
 
       expect(response).to redirect_to(user_url(User.last))
     end

@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <%= button_to 'Log out', sessions_url, method: 'delete' %>
+      
+    <% end %>
     <%= yield %>
   </body>
 </html>
